@@ -6,6 +6,8 @@ import 'package:http/http.dart' as http;
 import 'dart:convert';
 
 class AuthRemoteDatasource {
+  // Login
+
   Future<Either<String, AuthResponseModel>> login(
     String email,
     String password,
@@ -24,6 +26,7 @@ class AuthRemoteDatasource {
     }
   }
 
+// Logout
   Future<Either<String, String>> logout() async {
     final authData = await AuthLocalDataSource().getAuthData();
     final response = await http.post(

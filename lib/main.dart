@@ -3,6 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:frontend_pos_jumbotea/data/datasources/auth_local_datasource.dart';
 import 'package:frontend_pos_jumbotea/data/datasources/auth_remote_datasource.dart';
 import 'package:frontend_pos_jumbotea/presentation/auth/pages/login_page.dart';
+import 'package:frontend_pos_jumbotea/presentation/home/bloc/logout/logout_bloc.dart';
 import 'package:frontend_pos_jumbotea/presentation/home/pages/dashboard_page.dart';
 import 'package:google_fonts/google_fonts.dart';
 
@@ -19,8 +20,15 @@ class MyApp extends StatelessWidget {
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
-    return BlocProvider(
-      create: (context) => LoginBloc(AuthRemoteDatasource()),
+    return MultiBlocProvider(
+      providers: [
+        BlocProvider(
+          create: (context) => LoginBloc(AuthRemoteDatasource()),
+        ),
+        BlocProvider(
+          create: (context) => LogoutBloc(AuthRemoteDatasource()),
+        ),
+      ],
       child: MaterialApp(
         title: 'Flutter Demo',
         theme: ThemeData(
