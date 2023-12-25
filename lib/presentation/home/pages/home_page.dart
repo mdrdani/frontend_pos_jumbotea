@@ -57,6 +57,7 @@ class _HomePageState extends State<HomePage> {
   @override
   void initState() {
     // searchResults = products;
+    context.read<ProductBloc>().add(const ProductEvent.fetchLocal());
     super.initState();
   }
 

@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:frontend_pos_jumbotea/data/datasources/auth_local_datasource.dart';
 import 'package:frontend_pos_jumbotea/presentation/home/bloc/logout/logout_bloc.dart';
+import 'package:frontend_pos_jumbotea/presentation/setting/pages/setting_page.dart';
 
 import '../../../core/assets/assets.gen.dart';
 import '../../../core/constants/colors.dart';
@@ -27,9 +28,7 @@ class _DashboardPageState extends State<DashboardPage> {
     const Center(
       child: Text("History"),
     ),
-    const Center(
-      child: Text("Menu"),
-    ),
+    const SettingPage()
 
     // const OrdersPage(),
     // const Placeholder(),
@@ -45,33 +44,6 @@ class _DashboardPageState extends State<DashboardPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: const Text("Dashboard"),
-        actions: [
-          BlocConsumer<LogoutBloc, LogoutState>(
-            listener: (context, state) {
-              // TODO: implement listener
-              state.maybeMap(
-                  orElse: () {},
-                  success: (_) {
-                    AuthLocalDataSource().removeAuthData();
-                    Navigator.pushReplacement(
-                        context,
-                        MaterialPageRoute(
-                            builder: (context) => const LoginPage()));
-                  });
-            },
-            builder: (context, state) {
-              return IconButton(
-                onPressed: () {
-                  context.read<LogoutBloc>().add(const LogoutEvent.logout());
-                },
-                icon: const Icon(Icons.logout),
-              );
-            },
-          ),
-        ],
-      ),
       body: _pages[_selectedIndex],
       bottomNavigationBar: Container(
         padding: const EdgeInsets.all(20.0),

@@ -41,6 +41,7 @@ dependencies:
   intl: ^0.19.0
   shared_preferences: ^2.2.2
   cached_network_image: ^3.3.0
+  sqflite: any
 
 dev_dependencies:
   freezed: ^2.4.6

@@ -31,8 +31,8 @@ class MyApp extends StatelessWidget {
           create: (context) => LogoutBloc(AuthRemoteDatasource()),
         ),
         BlocProvider(
-          create: (context) =>
-              ProductBloc(ProductRemoteDataSource())..add(ProductEvent.fetch()),
+          create: (context) => ProductBloc(ProductRemoteDataSource())
+            ..add(ProductEvent.fetchLocal()),
         ),
       ],
       child: MaterialApp(
